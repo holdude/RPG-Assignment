@@ -12,7 +12,7 @@ namespace RPG_Assignment.Characters
         // On mage create set lv and attributes
         public Mage()
         {
-            Level = 1;
+            
             Strength = 1;
             Dexterity = 1;
             Intelligence = 8;

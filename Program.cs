@@ -74,15 +74,28 @@ namespace RPG_Assignment
                 } else if(heroClass == 2)
                 {
                     // Ranger
+                    heroes.Add(new Ranger() { Name = heroName });
+                    selectedHero = heroes.Count - 1;
+                    heroMenu();
+
+
                 } else if (heroClass == 3)
                 {
                     // Rouge
+                    heroes.Add(new Rouge() { Name = heroName });
+                    selectedHero = heroes.Count - 1;
+                    heroMenu();
                 } else if(heroClass == 4)
                 {
                     // Warrior
+                    heroes.Add(new Warrior() { Name = heroName });
+                    selectedHero = heroes.Count - 1;
+                    heroMenu();
                 } else
                 {
                     // Feil
+                    Console.WriteLine("Invalid input");
+                    mainMenu();
                 }
 
 
@@ -195,6 +208,7 @@ namespace RPG_Assignment
             // Equiping armor
             void equipArmor()
             {
+                Console.WriteLine();
                 // Print out all armor
                 int counter = 0;
                 armors.ForEach(arm =>
@@ -258,6 +272,7 @@ namespace RPG_Assignment
             // Equip weapon
             void equipWeapon()
             {
+                Console.WriteLine();
                 /// Print out all weapons
                 /// 
                 int counter = 0;

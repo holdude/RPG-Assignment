@@ -51,6 +51,7 @@ namespace RPG_Assignment.Characters
 
         public Hero()
         {
+            Level = 1;
             slots.Add("Head", null);
             slots.Add("Body", null);
             slots.Add("Legs", null);
@@ -60,8 +61,14 @@ namespace RPG_Assignment.Characters
 
         public void displayStats()
         {
-           Console.WriteLine($"The Lv { Level} hero {Name} has these current stats: Strength: {Strength}, Dexterity: {Dexterity}, Intelligence: {Intelligence}, Primary Attribute: {PrimaryAttribute}");
-            if(weapon != null)
+           calculateDamage();
+           Console.WriteLine();
+           Console.WriteLine($"The Lv { Level} hero {Name} has these current stats: \n");
+           Console.WriteLine("------------------Stats------------------");
+           Console.WriteLine($"Strength:     {Strength} \nDexterity:    {Dexterity} \nIntelligence: {Intelligence} \nDamage:       {Damage}\nPrimary Attribute: {PrimaryAttribute}\n");
+
+           
+            if (weapon != null)
             {
                 Console.WriteLine($"Currently handling: {weapon.Name}");
             }
@@ -86,37 +93,20 @@ namespace RPG_Assignment.Characters
 
         private void calculateDamage()
         {
-            // Spread out while working
-            // Run when new item or level up
 
-            // Base attributes sum
-            int attSum = Strength + Intelligence + Dexterity;
-            // Armor sum
-            int armorSum = 0;
+            int damageOut = 0;
+            // Check if weapon equiped
 
-            foreach(string arm in slots.Keys)
-            {
-                if(slots[arm] != null)
-                {
-                    armorSum +=slots[arm].Dexterity;
-                    armorSum += slots[arm].Strength;
-                    armorSum += slots[arm].Intelligence;
-                }
-            }
-
-            // Total attributes
-            int totAtt = attSum+armorSum;
-
-            // Weapon damage
             if(weapon != null)
             {
-                weapon.DPS * (1 + PrimaryAttribute / 100);
+                damageOut = weapon.DPS * (1 + getPrimaryAtt() / 100);
 
             } else
             {
-                Damage = 0;
+                damageOut = 1;
             }
 
+            Damage = damageOut;
         }
 
         public Boolean equipWeapon(Weapon weaponet)
@@ -196,7 +186,28 @@ namespace RPG_Assignment.Characters
                     {
                         // Added
                         Console.WriteLine("Armor added");
+                        // Check if armor currently present and remove their stats
+                        if(slots[placement] != null)
+                        {
+                            // Exists
+                            // Take away stats from hero
+                            Intelligence -= slots[placement].Intelligence;
+                            Strength -= slots[placement].Strength;
+                            Dexterity -= slots[placement].Dexterity;
+
+                        }
+
+
                         slots[placement] = armo;
+
+                        // ADD THE STATS
+                        Intelligence += slots[placement].Intelligence;
+                        Strength += slots[placement].Strength;
+                        Dexterity += slots[placement].Dexterity;
+
+                       
+
+
                         return true;
                     }
                 } else
@@ -216,7 +227,24 @@ namespace RPG_Assignment.Characters
         }
 
 
+        public int getPrimaryAtt()
+        {
+            switch (PrimaryAttribute)
+            {
+                case "Intelligence":
+                    return Intelligence;
+                    break;
 
+                case "Strength":
+                    return Strength;
+                    break;
+
+                case "Dexterity":
+                    return Dexterity;
+                    break;
+            }
+            return 0;
+        }
 
 
 
