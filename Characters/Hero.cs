@@ -1,4 +1,5 @@
-﻿using RPG_Assignment.Items;
+﻿using RPG_Assignment.Exceptions;
+using RPG_Assignment.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RPG_Assignment.Characters
 {
-    abstract class Hero{
+    public abstract class Hero{
 
         public string Name { get; set; }
         public string PrimaryAttribute { get; set; }
@@ -15,7 +16,7 @@ namespace RPG_Assignment.Characters
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Intelligence { get; set; }
-        public int Damage { get; set; }
+        public double Damage { get; set; }
 
 
         public int IntelligenceLevelUp { get; set; }
@@ -52,13 +53,16 @@ namespace RPG_Assignment.Characters
         public Hero()
         {
             Level = 1;
+            Damage = 1;
             slots.Add("Head", null);
             slots.Add("Body", null);
             slots.Add("Legs", null);
         }
 
 
-
+        /// <summary>
+        /// Displays the current stats of the hero, based on their level and gear
+        /// </summary>
         public void displayStats()
         {
            calculateDamage();
@@ -67,7 +71,7 @@ namespace RPG_Assignment.Characters
            Console.WriteLine("------------------Stats------------------");
            Console.WriteLine($"Strength:     {Strength} \nDexterity:    {Dexterity} \nIntelligence: {Intelligence} \nDamage:       {Damage}\nPrimary Attribute: {PrimaryAttribute}\n");
 
-           
+           // Checks if there is a weapon equiped
             if (weapon != null)
             {
                 Console.WriteLine($"Currently handling: {weapon.Name}");
@@ -75,6 +79,7 @@ namespace RPG_Assignment.Characters
 
             Console.WriteLine("------------------Armor------------------");
 
+            // Checks if armor is equiped or null
             foreach(string arm in slots.Keys)
             {
                 if (slots[arm] != null)
@@ -90,16 +95,19 @@ namespace RPG_Assignment.Characters
             
 
         }
-
+        /// <summary>
+        /// Calculates the damage the hero can do, based on level and gear
+        /// </summary>
         private void calculateDamage()
         {
 
-            int damageOut = 0;
+            double damageOut = 1;
             // Check if weapon equiped
 
             if(weapon != null)
             {
-                damageOut = weapon.DPS * (1 + getPrimaryAtt() / 100);
+
+                damageOut = weapon.DPS * (1 + (getPrimaryAtt() / 100));
 
             } else
             {
@@ -109,6 +117,12 @@ namespace RPG_Assignment.Characters
             Damage = damageOut;
         }
 
+        /// <summary>
+        /// Tries to equip the chosen weapon
+        /// Throws InvalidWeaponClass if not allowed
+        /// </summary>
+        /// <param name="weaponet"></param>
+        /// <returns></returns>
         public Boolean equipWeapon(Weapon weaponet)
         {
             Boolean allow = false;
@@ -127,16 +141,20 @@ namespace RPG_Assignment.Characters
                         };
                     }
 
+                    // Can't be used by this class
                     if(allow == false)
                     {
-                        throw new Exception($"{this.getObjName()} class can't use the weapon type {weaponet.getWeapontypeName()}");
+                        Console.WriteLine($"{this.getObjName()} class can't use the weapon type {weaponet.getWeapontypeName()}");
+
+                        throw new InvalidWeaponClass();
 
                     } else
                     {
-
+                        // Equiped
                         weapon = weaponet;
 
                         Console.WriteLine($"{weapon.Name} equiped");
+                        calculateDamage();
 
                         return true;
 
@@ -147,19 +165,28 @@ namespace RPG_Assignment.Characters
 
                 else
                 {
-                    throw new Exception($"{ Name } is only level { Level}, the required level for this weapon is { weaponet.levelReq }");
-
+                    // To low level
+                    Console.WriteLine($"{ Name } is only level { Level}, the required level for this weapon is { weaponet.levelReq }");
+                    throw new InvalidWeaponClass();
                 }
+
 
             } catch (Exception e)
             {
-                Console.WriteLine(e);
+
                 return false;
+             
             }
 
         }
 
-        // add armor
+        /// <summary>
+        /// Tries to add armor to hero, takes in armor piece and postion
+        /// Throws InvalidArmor if error
+        /// </summary>
+        /// <param name="armo"></param>
+        /// <param name="placement"></param>
+        /// <returns></returns>
         public Boolean addArmor(Armor armo, string placement)
         {
             Boolean allow = false;
@@ -180,7 +207,7 @@ namespace RPG_Assignment.Characters
 
                     if(allow == false)
                     {
-                        throw new Exception($"{this.getObjName()} class can't use {armo.getArmortypeName()} type");
+                        throw new InvalidArmor($"{this.getObjName()} class can't use {armo.getArmortypeName()} type");
                     }
                     else
                     {
@@ -197,7 +224,7 @@ namespace RPG_Assignment.Characters
 
                         }
 
-
+                        // Adds to slot
                         slots[placement] = armo;
 
                         // ADD THE STATS
@@ -212,7 +239,7 @@ namespace RPG_Assignment.Characters
                     }
                 } else
                 {
-                    throw new Exception($"{Name} is only level {Level}, the required level for this armor is {armo.levelReq}");
+                    throw new InvalidArmor($"{Name} is only level {Level}, the required level for this armor is {armo.levelReq}");
                 }
 
 
@@ -220,28 +247,27 @@ namespace RPG_Assignment.Characters
 
             } catch (Exception e)
             {
-                Console.WriteLine(e);
                 return false;
             }
 
         }
 
-
-        public int getPrimaryAtt()
+        /// <summary>
+        /// Checks for what the primary attribute is based on hero and returns it
+        /// </summary>
+        /// <returns></returns>
+        public double getPrimaryAtt()
         {
             switch (PrimaryAttribute)
             {
                 case "Intelligence":
                     return Intelligence;
-                    break;
 
                 case "Strength":
                     return Strength;
-                    break;
 
                 case "Dexterity":
                     return Dexterity;
-                    break;
             }
             return 0;
         }
@@ -256,7 +282,9 @@ namespace RPG_Assignment.Characters
         }
 
 
-        // On level up 
+        /// <summary>
+        /// Levels up the hero based on the role
+        /// </summary>
         public void levelUp()
         {
             int lvlOld = Level;

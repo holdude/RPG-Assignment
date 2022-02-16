@@ -24,9 +24,10 @@ namespace RPG_Assignment
                 new Weapon(6,1) {Name ="Draughtbane", weaponType=3, levelReq=4},
                 new Weapon(3,3) {Name ="Lifebender", weaponType=4, levelReq=5},
                 new Weapon(4,4) {Name ="Starlight", weaponType=5, levelReq=6},
-                new Weapon(1,5) {Name ="Glimmer", weaponType=6, levelReq=7}
+                new Weapon(1,5) {Name ="Glimmer", weaponType=6, levelReq=7},
+                new Weapon(7, 1.1) { Name = "Axe", weaponType = 0, levelReq = 1 }
 
-            };
+        };
 
             // Create armor
             List<Armor> armors = new List<Armor>()
@@ -35,7 +36,8 @@ namespace RPG_Assignment
                 new Armor(2,1,3) {Name ="Leather", armorType=1, levelReq=2},
                 new Armor(2,3,1) {Name ="Mail", armorType=2, levelReq=3},
                 new Armor(2,1,5) {Name ="Plate", armorType=3, levelReq=4},
-            };
+                new Armor(1, 1, 5) { Name = "Plate2", armorType = 3, levelReq = 1 }
+        };
 
 
 
@@ -47,7 +49,7 @@ namespace RPG_Assignment
 
 
 
-            // Create hero
+            /// Menu for creaing hero
              void createHero()
             {
                 // Name
@@ -93,7 +95,7 @@ namespace RPG_Assignment
                     heroMenu();
                 } else
                 {
-                    // Feil
+                    // Error
                     Console.WriteLine("Invalid input");
                     mainMenu();
                 }
@@ -111,12 +113,14 @@ namespace RPG_Assignment
                 Console.WriteLine("MAIN MENU \n1 - Create new hero \n2 - Create new item \n3 - Select hero");
                 int mainMenuChoice = Convert.ToInt32(Console.ReadLine());
 
-                if(mainMenuChoice == 1)
+                if (mainMenuChoice == 1)
                 {
                     createHero();
-                } else if(mainMenuChoice == 2)
+                } else if (mainMenuChoice == 2)
                 {
                     // new item
+                    Console.WriteLine("Function not added");
+                    mainMenu();
                 } else if (mainMenuChoice == 3)
                 {
                     // Select hero

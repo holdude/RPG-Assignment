@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG_Assignment.Items
 {
-    class Armor : Item
+    public class Armor : Item
     {
         public int Strength { get; set; }
         public int Dexterity { get; set; }
@@ -24,6 +24,7 @@ namespace RPG_Assignment.Items
             "Plate"
         };
 
+
         public Armor(int strength, int dexterity, int intelligence)
         {
             Strength = strength;
@@ -31,7 +32,7 @@ namespace RPG_Assignment.Items
             Intelligence = intelligence;
         }
 
-        // get the name based on type
+        // Returns name based on what type(int) it has
         public string getArmortypeName()
         {
             return armorTypes[armorType];

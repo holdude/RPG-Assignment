@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace RPG_Assignment.Items
 {
-    class Weapon : Item
+   public class Weapon : Item
     {
-        public int Damage {get; set;}
-        public int DPS { get; set; }
-        public int AttackSpeed { get; set; }
+        public double Damage {get; set;}
+        public double DPS { get; set; }
+        public double AttackSpeed { get; set; }
 
         public int weaponType { get; set; }
 
+
+        // List of weapon types
         List<String> weaponTypes = new List<string>()
         {
            "Axe",
@@ -25,7 +27,7 @@ namespace RPG_Assignment.Items
            "Wand"
         };
 
-        public Weapon(int damage, int aSpeed)
+        public Weapon(double damage, double aSpeed)
         {
             Damage = damage;
             AttackSpeed = aSpeed;

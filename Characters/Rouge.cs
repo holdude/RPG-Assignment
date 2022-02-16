@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG_Assignment.Characters
 {
-    class Rouge : Hero
+    public class Rouge : Hero
     {
         public Rouge()
         {

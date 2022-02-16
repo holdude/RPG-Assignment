@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG_Assignment.Characters
 {
-    class Mage : Hero{
+   public class Mage : Hero{
 
 
         // On mage create set lv and attributes
