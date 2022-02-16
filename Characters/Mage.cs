@@ -18,16 +18,21 @@ namespace RPG_Assignment.Characters
             Intelligence = 8;
             PrimaryAttribute = "Intelligence";
 
+            // Sets level up stats
+            StrengthLevlUp = 1;
+            DexterityLevelUp = 1;
+            IntelligenceLevelUp = 5;
 
+            // Allows weapons
+
+            weaponAllow.Add(4);
+            weaponAllow.Add(6);
+
+            // Allows armos
+            armorAllow.Add(0);
         }
 
-        // On level up mage
-        public void levelUp()
-        {
-            Strength += 1;
-            Dexterity += 1;
-            Intelligence += 5;
-        }
+
 
     }
 }

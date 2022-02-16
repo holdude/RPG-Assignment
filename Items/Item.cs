@@ -10,7 +10,15 @@ namespace RPG_Assignment.Items
     {
         public string Name { get; set; }
         public int levelReq { get; set; }
-        public string Slot { get; set; }
+
+
+
+
+        // Slot 0 = weapon Slot 1 = armor slot
+        public int Slot { get; set; }
+
+        // 0 = Weapon, 1 = Armor
+        public int Type { get; set; }
     
     }
 
