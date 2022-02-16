@@ -1,0 +1,16 @@
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\bin\Debug\net5.0\RPG-Assignment.exe
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\bin\Debug\net5.0\RPG-Assignment.deps.json
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\bin\Debug\net5.0\RPG-Assignment.runtimeconfig.json
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\bin\Debug\net5.0\RPG-Assignment.runtimeconfig.dev.json
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\bin\Debug\net5.0\RPG-Assignment.dll
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\bin\Debug\net5.0\ref\RPG-Assignment.dll
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\bin\Debug\net5.0\RPG-Assignment.pdb
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.csproj.AssemblyReference.cache
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.AssemblyInfoInputs.cache
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.AssemblyInfo.cs
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.csproj.CoreCompileInputs.cache
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.dll
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\ref\RPG-Assignment.dll
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.pdb
+C:\Users\Erlend Hollund\source\repos\RPG-Assignment\obj\Debug\net5.0\RPG-Assignment.genruntimeconfig.cache
